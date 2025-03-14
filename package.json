@@ -1,0 +1,37 @@
+{
+  "name": "relogger",
+  "module": "reLogger.ts",
+  "version": "1.0.0",
+  "description": "A TypeScript library to make custom logger-levels",
+  "main": "./dist/reLogger.js",
+  "types": "./dist/reLogger.d.ts",
+  "type": "module",
+  "exports": {
+    "import": "./dist/reLogger.js",
+    "types": "./dist/reLogger.d.ts"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "bun build ./reLogger.ts --target node --outdir dist --format esm && tsc",
+    "start": "bun run ./dist/reLogger.js",
+    "test": "bun test"
+  },
+  "keywords": [
+    "logger",
+    "color"
+  ],
+  "author": "Ruslan Mayer https://github.com/rmay1er",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "dayjs": "^1.11.13"
+  }
+}
