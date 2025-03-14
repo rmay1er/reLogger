@@ -1,5 +1,5 @@
 {
-  "name": "relogger",
+  "name": "relogger-x",
   "module": "reLogger.ts",
   "version": "1.0.0",
   "description": "A TypeScript library to make custom logger-levels",
