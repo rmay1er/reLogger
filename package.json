@@ -1,8 +1,8 @@
 {
   "name": "relogger-x",
   "module": "reLogger.ts",
-  "version": "1.0.0",
-  "description": "A TypeScript library to make custom logger-levels",
+  "version": "1.0.1",
+  "description": "A lightweight TypeScript library to make custom pretty logger with dynamic levels",
   "main": "./dist/reLogger.js",
   "types": "./dist/reLogger.d.ts",
   "type": "module",
@@ -15,8 +15,7 @@
   ],
   "scripts": {
     "build": "bun build ./reLogger.ts --target node --outdir dist --format esm && tsc",
-    "start": "bun run ./dist/reLogger.js",
-    "test": "bun test"
+    "start": "bun run ./dist/reLogger.js"
   },
   "keywords": [
     "logger",
@@ -28,10 +27,9 @@
     "@types/bun": "latest"
   },
   "peerDependencies": {
+    "chalk": "^5.4.1",
+    "dayjs": "^1.11.13",
     "typescript": "^5"
   },
-  "dependencies": {
-    "chalk": "^5.4.1",
-    "dayjs": "^1.11.13"
-  }
+  "dependencies": {}
 }
