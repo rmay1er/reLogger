@@ -4,10 +4,10 @@
 
 ## Installation
 
-You can install `reLogger-x` via npm:
+You can install `reLogger` via npm:
 
 ```bash
-npm install relogger
+npm install relogger-x
 ```
 
 ## Usage
