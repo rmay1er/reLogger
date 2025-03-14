@@ -1,7 +1,7 @@
 {
   "name": "relogger-x",
   "module": "reLogger.ts",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A lightweight TypeScript library to make custom pretty logger with dynamic levels",
   "main": "./dist/reLogger.js",
   "types": "./dist/reLogger.d.ts",
@@ -14,7 +14,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "bun build ./reLogger.ts --target node --outdir dist --format esm && tsc",
+    "build": "bun build ./reLogger.ts --target node --outdir dist --format --external chalk dayjs esm && tsc",
     "start": "bun run ./dist/reLogger.js"
   },
   "keywords": [
@@ -24,12 +24,13 @@
   "author": "Ruslan Mayer https://github.com/rmay1er",
   "license": "MIT",
   "devDependencies": {
-    "@types/bun": "latest",
-    "chalk": "^5.4.1",
-    "dayjs": "^1.11.13"
+    "@types/bun": "latest"
   },
   "peerDependencies": {
     "typescript": "^5"
   },
-  "dependencies": {}
+  "dependencies": {
+    "chalk": "^5.4.1",
+    "dayjs": "^1.11.13"
+  }
 }
