@@ -14,7 +14,7 @@
     "dist"
   ],
   "scripts": {
-    "build": "bun build ./reLogger.ts --target node --outdir dist --format --external chalk dayjs esm && tsc",
+    "build": "bun build ./reLogger.ts --target node --outdir dist --format esm --external chalk dayjs && tsc",
     "start": "bun run ./dist/reLogger.js"
   },
   "keywords": [
