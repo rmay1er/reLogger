@@ -2,7 +2,7 @@ const startTime = Date.now();
 console.log(`Building...`);
 
 await Bun.build({
-  entrypoints: ["./reloger-x.ts"],
+  entrypoints: ["./relogger-x.ts"],
   target: "bun",
   outdir: "./dist",
   packages: "external",
