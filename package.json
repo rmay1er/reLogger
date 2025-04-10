@@ -1,7 +1,7 @@
 {
   "name": "relogger-x",
   "module": "relogger-x.ts",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "A lightweight TypeScript library to make custom pretty logger with dynamic levels",
   "main": "./dist/relogger.js",
   "types": "./dist/relogger.d.ts",
