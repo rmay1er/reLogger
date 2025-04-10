@@ -1,7 +1,7 @@
 // Example usage of reLogger with explanations:
 
 // 1. First import the logger
-import reLogger from "./dist/reloger-x";
+import reLogger from "./relogger-x";
 
 // 2. Create a logger instance with:
 //    - "cyan" as the main timestamp color

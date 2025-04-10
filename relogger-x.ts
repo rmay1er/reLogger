@@ -6,77 +6,55 @@ import utc from "dayjs/plugin/utc.js";
 dayjs.extend(utc);
 dayjs.extend(timezone);
 
-type LogLevels = Record<string, keyof typeof chalk>;
+type LogMethod = (message: string, ...args: any[]) => string;
 
 /**
  * A customizable logging utility that supports dynamic log levels and colored output.
- *
- * @class reLogger
- * @example
- * const logger = new reLogger("blue", {
- *   info: "blue",
- *   error: "red",
- *   warn: "yellow",
- * });
- *
- * logger.info("This is an info message");
- * logger.error("This is an error message");
- * logger.warn("This is a warning message");
  */
-class reLogger<Levels extends LogLevels> {
-  private chalk: typeof chalk;
-  private timezone: string;
-  private getTimeStamp: () => string;
-  private mainColor: keyof typeof chalk;
+class reLogger {
+  private readonly chalk: typeof chalk;
+  private readonly timezone: string;
+  private readonly getTimeStamp: () => string;
+  private readonly mainColor: keyof typeof chalk;
+  private readonly customLevels: Record<string, keyof typeof chalk>;
 
-  /**
-   * Creates an instance of reLogger.
-   *
-   * @param {keyof typeof chalk} [mainColor="green"] - The main color for the timestamp in the log output.
-   * @param {Levels} [customLevels={}] - An object defining custom log levels and their corresponding colors.
-   * @example
-   * const logger = new reLogger("cyan", {
-   *   debug: "gray",
-   *   success: "green",
-   * });
-   */
-  constructor(mainColor: keyof typeof chalk, customLevels: Levels) {
+  // Динамические методы будут добавляться сюда
+  [key: string]: LogMethod | any;
+
+  constructor(
+    mainColor: keyof typeof chalk = "green",
+    customLevels: Record<string, keyof typeof chalk> = {},
+  ) {
     this.chalk = chalk;
     this.timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
     this.mainColor = mainColor;
+    this.customLevels = customLevels;
 
     this.getTimeStamp = () => {
       return dayjs().tz(this.timezone).format("DD.MM.YYYY | HH:mm:ss");
     };
 
-    const handler: ProxyHandler<this> = {
-      get: (target, prop: string) => {
-        if (prop in target) {
-          return target[prop as keyof this];
-        }
+    // Создаем методы для каждого кастомного уровня
+    for (const level in customLevels) {
+      this[level] = this.createLogMethod(level);
+    }
+  }
 
-        if (prop in customLevels) {
-          return (message: string, ...args: any[]) => {
-            const timestamp = this.getTimeStamp();
-            const levelUpperCase = prop.toUpperCase();
-            const colorName = customLevels[prop as keyof Levels];
+  private createLogMethod(level: string): LogMethod {
+    return (message: string, ...args: any[]) => {
+      const timestamp = this.getTimeStamp();
+      const levelUpperCase = level.toUpperCase();
+      const colorName = this.customLevels[level];
 
-            const coloredTimestamp = (this.chalk as any)[this.mainColor](
-              `[${timestamp}]`,
-            );
-            const coloredLevel = (this.chalk as any)[colorName](levelUpperCase);
-            const output = `${coloredTimestamp} ${coloredLevel} : ${message}`;
+      const coloredTimestamp = (this.chalk as any)[this.mainColor](
+        `[${timestamp}]`,
+      );
+      const coloredLevel = (this.chalk as any)[colorName](levelUpperCase);
+      const output = `${coloredTimestamp} ${coloredLevel} : ${message}`;
 
-            console.log(output, ...args);
-            return output;
-          };
-        }
-
-        return undefined;
-      },
+      console.log(output, ...args);
+      return output;
     };
-
-    return new Proxy(this, handler);
   }
 }
 
