@@ -1,21 +1,21 @@
 {
   "name": "relogger-x",
-  "module": "reLogger.ts",
-  "version": "1.0.5",
+  "module": "relogger-x.ts",
+  "version": "1.0.6",
   "description": "A lightweight TypeScript library to make custom pretty logger with dynamic levels",
   "main": "./dist/reLogger.js",
   "types": "./dist/reLogger.d.ts",
   "type": "module",
   "exports": {
-    "import": "./dist/reLogger.js",
-    "types": "./dist/reLogger.d.ts"
+    "import": "./dist/relogger-x.js",
+    "types": "./dist/relogger-x.d.ts"
   },
   "files": [
     "dist"
   ],
   "scripts": {
-    "build": "bun build ./reLogger.ts --target node --outdir dist --format esm --external chalk dayjs && tsc",
-    "start": "bun run ./dist/reLogger.js"
+    "build": "rm -rf dist && tsc && bun run build.ts",
+    "start": "bun run ./dist/relogger-x.js"
   },
   "keywords": [
     "logger",

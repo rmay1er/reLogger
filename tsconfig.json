@@ -26,6 +26,6 @@
     "noUnusedParameters": false,
     "noPropertyAccessFromIndexSignature": false
   },
-  "include": ["reLogger.ts"],
+  "include": ["reloger-x.ts"],
   "exclude": ["node_modules", "dist", "test.ts"]
 }
